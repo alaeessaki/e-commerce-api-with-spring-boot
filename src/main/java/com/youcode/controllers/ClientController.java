@@ -24,30 +24,30 @@ import com.youcode.services.interfaces.ClientServiceInterface;
 
 @RestController
 @CrossOrigin
-@RequestMapping("api/clients")
+@RequestMapping("api")
 public class ClientController {
 
 	@Autowired
 	ClientServiceInterface client_service;
 	
-	@GetMapping("")
+	@GetMapping("/clients")
 	public ResponseEntity<List<Client>> getAll(){
 		return ResponseEntity.ok(client_service.getAll());
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/clients/{id}")
 	public ResponseEntity<Client> getClient(@PathVariable("id")int id){
 		Client client = client_service.get(id).orElseThrow(()->new NotFoundException("there is no client with this id"));
 		return ResponseEntity.ok(client);
 	}
 	
-	@GetMapping("/{id}/lignes-de-piece")
+	@GetMapping("/clients/{id}/lignes-de-piece")
 	public ResponseEntity<List<LigneDePiece>> getClientLignesDePiece(@PathVariable("id")int id){
 		Client client = client_service.get(id).orElseThrow(()->new NotFoundException("there is no client with this id"));
 		return ResponseEntity.ok(client.getLignes_de_piece());
 	}
 	
-	@PostMapping("")
+	@PostMapping("/clients")
 	public ResponseEntity<Client> addClient(@RequestBody Client client){
 		client_service.add(client);
 		List<Coupon> coupons = new ArrayList<Coupon>();
@@ -61,7 +61,7 @@ public class ClientController {
 		return ResponseEntity.ok(client);
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("/clients/{id}")
 	public ResponseEntity<Client> modifyClient(@PathVariable("id")int id, @RequestBody Client client){
 		client_service.get(id).orElseThrow(()->new NotFoundException("there is no Client with this id"));
 		client.setId(id);
@@ -69,7 +69,7 @@ public class ClientController {
 		return ResponseEntity.ok(client); 
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/clients/{id}")
 	public ResponseEntity<String> deleteClient(@PathVariable("id")int id){
 		client_service.get(id).orElseThrow(()->new NotFoundException("there is no Client with this id"));
 		client_service.delete(id);

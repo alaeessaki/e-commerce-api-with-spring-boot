@@ -20,31 +20,31 @@ import com.youcode.services.interfaces.ColorServiceInterface;
 
 @RestController
 @CrossOrigin
-@RequestMapping("api/colors")
+@RequestMapping("api")
 public class ColorController {
 
 	@Autowired
 	ColorServiceInterface color_service;
 
 	
-	@GetMapping("")
+	@GetMapping("/colors")
 	public ResponseEntity<List<Color>> getAll(){
 		return ResponseEntity.ok(color_service.getAll());
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/colors/{id}")
 	public ResponseEntity<Color> getOne(@PathVariable("id")int id) {
 		Color color = color_service.get(id).orElseThrow(()->new NotFoundException("there is no Color with this id"));
 		return ResponseEntity.ok(color);
 	}
 	
-	@PostMapping("")
+	@PostMapping("/admins/colors")
 	public ResponseEntity<Color> add(@RequestBody Color color){
 		color_service.add(color);
 		return ResponseEntity.ok().header("message", "Color added successfully").body(color);
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("/admins/colors/{id}")
 	public ResponseEntity<Color> update(@RequestBody Color color, @PathVariable("id")int color_id){
 		color_service.get(color_id).orElseThrow(()->new NotFoundException("there is no Color with this id"));
 		color.setId(color_id);
@@ -52,7 +52,7 @@ public class ColorController {
 		return ResponseEntity.ok().header("message", "Color added successfully").body(color);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/admins/colors/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id")int id){
 		color_service.get(id).orElseThrow(()->new NotFoundException("there is no Color with this id"));
 		color_service.delete(id);

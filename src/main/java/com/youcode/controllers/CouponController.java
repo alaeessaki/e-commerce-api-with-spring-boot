@@ -1,7 +1,6 @@
 package com.youcode.controllers;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +22,7 @@ import com.youcode.services.interfaces.CouponServiceInterface;
 
 @RestController
 @CrossOrigin
-@RequestMapping("api/coupons")
+@RequestMapping("api")
 public class CouponController {
 
 	@Autowired
@@ -32,25 +31,25 @@ public class CouponController {
 	@Autowired
 	ClientServiceInterface client_service;
 	
-	@GetMapping("")
+	@GetMapping("/coupons")
 	public ResponseEntity<List<Coupon>> getAll(){
 		return ResponseEntity.ok(coupons_service.getAll());
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/coupons/{id}")
 	public ResponseEntity<Coupon> getCoupon(@PathVariable("id")int id){
 		Coupon coupon = coupons_service.get(id).orElseThrow(()->new NotFoundException("there is no coupon with this id"));
 		return ResponseEntity.ok(coupon);
 	}
 	
-	@GetMapping("/{code}/status")
+	@GetMapping("/coupons/{code}/status")
 	public ResponseEntity<String> checkValid(@PathVariable("code")String code){
 		Coupon coupon = coupons_service.getByCode(code).orElseThrow(()->new NotFoundException("there is no coupon with this code"));
 		boolean isValid = coupon.checkValidation();
 		return ResponseEntity.ok("is valid :" + isValid);
 	}
 	
-	@PostMapping("/client/{client_id}")
+	@PostMapping("/coupons/client/{client_id}")
 	public ResponseEntity<Coupon> addCoupon(@PathVariable("client_id")int client_id,@RequestBody Coupon coupon ){
 		Client client = client_service.get(client_id).orElseThrow(()->new NotFoundException("there is no Client with this id"));
 		coupon.setClient(client);
@@ -58,7 +57,7 @@ public class CouponController {
 		return ResponseEntity.ok(coupon);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/admins/coupons/{id}")
 	public ResponseEntity<String> deleteCoupon(@PathVariable("id")int id){
 		coupons_service.get(id).orElseThrow(()->new NotFoundException("there is no coupon with this id"));
 		coupons_service.delete(id);
