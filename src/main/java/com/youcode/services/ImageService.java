@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.youcode.dao.ImageDaoInterface;
-import com.youcode.entities.Image;
+import com.youcode.models.Image;
 import com.youcode.services.interfaces.ImageServiceInterface;
 
 @Service

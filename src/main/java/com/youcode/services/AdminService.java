@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.youcode.dao.AdminDaoInterface;
-import com.youcode.entities.Admin;
+import com.youcode.models.Admin;
 import com.youcode.services.interfaces.AdminServiceInterface;
 
 @Service

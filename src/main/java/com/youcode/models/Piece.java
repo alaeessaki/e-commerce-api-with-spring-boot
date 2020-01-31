@@ -1,5 +1,6 @@
-package com.youcode.entities;
+package com.youcode.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -33,7 +34,11 @@ public class Piece {
 	@Column(name = "total_price", nullable = false)
 	private float total_price;
 	
-	@OneToMany(mappedBy = "piece")
+	@OneToMany
+	@JoinTable(
+			name = "ligne_de_piece_piece",
+			joinColumns = @JoinColumn(name="piece_id", nullable = false),
+			inverseJoinColumns = @JoinColumn(name="ligne_id", nullable = false))
 	private List<LigneDePiece> ligne_de_pieces;
 	
 	@OneToMany(mappedBy = "piece")
@@ -42,10 +47,28 @@ public class Piece {
 	@ManyToOne
 	@JoinTable(
 			name = "piece_payment",
-			joinColumns = @JoinColumn(name="piece_id", nullable = false),
-			inverseJoinColumns = @JoinColumn(name="payment_id", nullable = false))
+			joinColumns = @JoinColumn(name="piece_id"),
+			inverseJoinColumns = @JoinColumn(name="payment_id"))
 	private Payment payment;
 	
 	@OneToMany(mappedBy = "piece")
 	private List<PieceHead> piece_heads;
+	
+	
+	public void checkAttributes() {
+		if(this.coupons==null) {
+			List<Coupon> coupons = new ArrayList<Coupon>();
+			this.setCoupons(coupons);
+		}
+		if(this.ligne_de_pieces==null) {
+			List<LigneDePiece> ligne_de_pieces = new ArrayList<LigneDePiece>();
+			this.setLigne_de_pieces(ligne_de_pieces);
+		}
+		if(this.piece_heads==null) {
+			List<PieceHead> piece_heads = new ArrayList<PieceHead>();
+			this.setPiece_heads(piece_heads);
+		}
+	}
+	
+	
 }

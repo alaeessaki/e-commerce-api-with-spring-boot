@@ -1,4 +1,4 @@
-package com.youcode.entities;
+package com.youcode.models;
 
 
 import javax.persistence.Column;

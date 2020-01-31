@@ -1,13 +1,10 @@
-package com.youcode.entities;
-
-import java.util.List;
+package com.youcode.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.youcode.config.AuditModel;
@@ -18,17 +15,14 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper=false)
-@Table(name = "piece_types")
-public class PieceType extends AuditModel{
-
+@Table(name = "sizes")
+public class Size extends AuditModel{
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "piece_type_id")
+	@Column(name = "size_id")
 	private int id;
 	
 	@Column(name = "label", nullable = false)
 	private String label;
-	
-	@OneToMany(mappedBy = "piece_type")
-	private List<PieceHead> piece_heads;
 }

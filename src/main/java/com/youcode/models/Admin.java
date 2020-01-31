@@ -1,9 +1,11 @@
-package com.youcode.entities;
+package com.youcode.models;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
+import com.youcode.dto.User;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,6 +16,5 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=false)
 @Table(name = "admins")
 public class Admin extends User{
-
 	
 }

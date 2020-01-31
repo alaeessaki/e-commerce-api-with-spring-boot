@@ -3,7 +3,7 @@ package com.youcode.services.interfaces;
 import java.util.List;
 import java.util.Optional;
 
-import com.youcode.entities.Color;
+import com.youcode.models.Color;
 
 public interface ColorServiceInterface {
 

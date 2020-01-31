@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.youcode.entities.Admin;
-import com.youcode.entities.Client;
-import com.youcode.entities.Role;
 import com.youcode.exceptions.NotFoundException;
+import com.youcode.models.Admin;
+import com.youcode.models.Client;
+import com.youcode.models.Role;
 import com.youcode.services.interfaces.AdminServiceInterface;
 import com.youcode.services.interfaces.ClientServiceInterface;
 import com.youcode.services.interfaces.RoleServiceInterface;

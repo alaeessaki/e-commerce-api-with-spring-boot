@@ -1,4 +1,4 @@
-package com.youcode.entities;
+package com.youcode.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,12 +15,12 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper=false)
-@Table(name = "sizes")
-public class Size extends AuditModel{
+@Table(name = "colors")
+public class Color extends AuditModel{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "size_id")
+	@Column(name = "color_id")
 	private int id;
 	
 	@Column(name = "label", nullable = false)

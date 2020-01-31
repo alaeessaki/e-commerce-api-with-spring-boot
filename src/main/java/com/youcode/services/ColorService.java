@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.youcode.dao.ColorDaoInterface;
-import com.youcode.entities.Color;
+import com.youcode.models.Color;
 import com.youcode.services.interfaces.ColorServiceInterface;
 
 @Service

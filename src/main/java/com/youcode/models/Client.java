@@ -1,4 +1,4 @@
-package com.youcode.entities;
+package com.youcode.models;
 
 import java.util.Date;
 import java.util.List;
@@ -14,6 +14,8 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.youcode.dto.User;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -63,6 +65,7 @@ public class Client extends User{
 	@OneToMany(mappedBy = "client")
 	private List<LigneDePiece> lignes_de_piece;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	private List<Review> reviews;
 }

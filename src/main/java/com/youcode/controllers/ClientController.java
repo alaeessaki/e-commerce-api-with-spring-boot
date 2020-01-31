@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.youcode.entities.Client;
-import com.youcode.entities.Coupon;
-import com.youcode.entities.LigneDePiece;
-import com.youcode.entities.Review;
 import com.youcode.exceptions.NotFoundException;
+import com.youcode.models.Client;
+import com.youcode.models.Coupon;
+import com.youcode.models.LigneDePiece;
+import com.youcode.models.Review;
 import com.youcode.services.interfaces.ClientServiceInterface;
 
 @RestController
@@ -39,6 +39,12 @@ public class ClientController {
 	public ResponseEntity<Client> getClient(@PathVariable("id")int id){
 		Client client = client_service.get(id).orElseThrow(()->new NotFoundException("there is no client with this id"));
 		return ResponseEntity.ok(client);
+	}
+	
+	@GetMapping("/{id}/lignes-de-piece")
+	public ResponseEntity<List<LigneDePiece>> getClientLignesDePiece(@PathVariable("id")int id){
+		Client client = client_service.get(id).orElseThrow(()->new NotFoundException("there is no client with this id"));
+		return ResponseEntity.ok(client.getLignes_de_piece());
 	}
 	
 	@PostMapping("")

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.youcode.dao.CategoryDaoInterface;
-import com.youcode.entities.Category;
+import com.youcode.models.Category;
 import com.youcode.services.interfaces.CategoryServiceInterface;
 
 @Service
@@ -18,6 +18,10 @@ public class CategoryService implements CategoryServiceInterface{
 
 	public void add(Category category) {
 		category_dao.save(category);
+	}
+	
+	public Optional<Category> getByName(String category_name){
+		return category_dao.findByLabel(category_name);
 	}
 	
 	public Optional<Category> get(int id){

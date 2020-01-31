@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.youcode.dao.SizeDaoInterface;
-import com.youcode.entities.Size;
+import com.youcode.models.Size;
 import com.youcode.services.interfaces.SizeServiceInterface;
 
 @Service

@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.youcode.dao.PaymentDaoInterface;
-import com.youcode.entities.Payment;
+import com.youcode.models.Payment;
 import com.youcode.services.interfaces.PaymentServiceInterface;
 @Service
 public class PaymentService implements PaymentServiceInterface{

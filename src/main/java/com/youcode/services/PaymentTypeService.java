@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.youcode.dao.PaymentTypeDaoInterface;
-import com.youcode.entities.PaymentType;
+import com.youcode.models.PaymentType;
 import com.youcode.services.interfaces.PaymentTypeServiceInterface;
 
 @Service

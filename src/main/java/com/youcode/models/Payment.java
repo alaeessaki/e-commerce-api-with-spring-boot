@@ -1,13 +1,13 @@
-package com.youcode.entities;
+package com.youcode.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.youcode.config.AuditModel;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,20 +15,18 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper=false)
-@Table(name = "shippings")
-public class Shipping extends AuditModel{
-
+@Table(name = "payments")
+public class Payment {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "shipping_id")
+	@Column(name = "payment_id")
 	private int id;
 	
-	@Column(name = "name", nullable = false)
-	private String name; 
+	@Column(name = "label", nullable = false)
+	private String label;
 	
-	@Column(name = "description", nullable = false)
-	private String description;
-	
-	@Column(name = "price", nullable = false)
-	private float price;
+	@ManyToOne
+	@JoinColumn(name = "payment_type_id", nullable = false)
+	private PaymentType payment_type;
 }

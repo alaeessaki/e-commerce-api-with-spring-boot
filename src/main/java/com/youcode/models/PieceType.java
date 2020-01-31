@@ -1,8 +1,7 @@
-package com.youcode.entities;
+package com.youcode.models;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,18 +18,25 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper=false)
-@Table(name = "payment_types")
-public class PaymentType extends AuditModel{
+@Table(name = "piece_types")
+public class PieceType extends AuditModel{
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "payment_id")
+	@Column(name = "piece_type_id")
 	private int id;
 	
 	@Column(name = "label", nullable = false)
 	private String label;
 	
-	@OneToMany(mappedBy = "payment_type", cascade = CascadeType.ALL)
-	private List<Payment> payments;
+	@Column(name="last_inc_id", nullable = false)
+	private int last_inc;
+	
+	@OneToMany(mappedBy = "piece_type")
+	private List<PieceHead> piece_heads;
+	
+	
+	public void incId() {
+		this.last_inc = this.last_inc + 1;
+	}
 }

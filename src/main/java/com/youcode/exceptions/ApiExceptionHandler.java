@@ -27,4 +27,12 @@ public class ApiExceptionHandler {
 		ApiException apiException = new ApiException(AttributeMissingException.class.getSimpleName(), e.getMessage(), badRequest ,"One of the attributes in the resource sent is missing ",path[1], ZonedDateTime.now(ZoneId.of("Z")));
 		return new ResponseEntity<>(apiException,badRequest);
 	}	
+	
+	@ExceptionHandler(value = {CouponNotValidException.class})
+	public ResponseEntity<Object> handleApiRequestException(CouponNotValidException e, WebRequest request){
+		HttpStatus badRequest = HttpStatus.NOT_ACCEPTABLE;
+		String path[] = request.getDescription(false).split("=");
+		ApiException apiException = new ApiException(AttributeMissingException.class.getSimpleName(), e.getMessage(), badRequest ,"This coupon is not valid try another coupon",path[1], ZonedDateTime.now(ZoneId.of("Z")));
+		return new ResponseEntity<>(apiException,badRequest);
+	}	
 }

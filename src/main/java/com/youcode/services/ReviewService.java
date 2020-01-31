@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.youcode.dao.ReviewDaoInterface;
-import com.youcode.entities.Review;
+import com.youcode.models.Review;
 import com.youcode.services.interfaces.ReviewServiceInterface;
 
 @Service

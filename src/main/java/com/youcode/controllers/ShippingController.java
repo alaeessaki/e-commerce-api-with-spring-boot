@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.youcode.entities.Shipping;
 import com.youcode.exceptions.NotFoundException;
+import com.youcode.models.Shipping;
 import com.youcode.services.interfaces.ShippingServiceInterface;
 
 @RestController

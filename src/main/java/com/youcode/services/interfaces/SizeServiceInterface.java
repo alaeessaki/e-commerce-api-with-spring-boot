@@ -3,7 +3,7 @@ package com.youcode.services.interfaces;
 import java.util.List;
 import java.util.Optional;
 
-import com.youcode.entities.Size;
+import com.youcode.models.Size;
 
 public interface SizeServiceInterface {
 

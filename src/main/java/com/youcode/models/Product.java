@@ -1,4 +1,4 @@
-package com.youcode.entities;
+package com.youcode.models;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,6 +16,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -56,8 +57,15 @@ public class Product extends AuditModel{
 	private int stock;
 	
 	@Column(name = "number_of_sells", nullable = true, columnDefinition = "integer default 0")
-	private int number_of_sells;
+	private int sells;
 	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "stars_collection_id")
+	private StarsCollection stars_collection;
+	
+//	@Column(name = "rating", nullable = true)
+//	private float rating;
+
 	@Column(name = "live", nullable = true, columnDefinition = "boolean default false")
 	private boolean live;
 
@@ -89,12 +97,21 @@ public class Product extends AuditModel{
 	@OneToMany(mappedBy = "product")
 	private List<LigneDePiece> lignes_de_piece;
 	
+	
+	public float getRating() {
+		return this.stars_collection.getRating();
+	}
+	
 	public void checkAttributes() {
 		if(this.colors==null) throw new AttributeMissingException("the product requires a list of colors");
 		if(this.images==null) throw new AttributeMissingException("the product requires a list of images");
 		if(this.category==null) throw new AttributeMissingException("the product needs to be in a category");
 		if(this.sizes==null) throw new AttributeMissingException("the product needs a list of sizes");
 		
+		if(this.stars_collection==null) {
+			StarsCollection stars_collection = new StarsCollection();
+			this.setStars_collection(stars_collection);
+		}
 		if(this.reviews==null) {
 			List<Review> reviews = new ArrayList<Review>();
 			this.setReviews(reviews);
@@ -109,4 +126,7 @@ public class Product extends AuditModel{
 		}
 		
 	}
+	
+
+	
 }

@@ -1,4 +1,4 @@
-package com.youcode.entities;
+package com.youcode.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +10,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.youcode.exceptions.AttributeMissingException;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -57,4 +58,12 @@ public class PieceHead {
 	@ManyToOne
 	@JoinColumn(name = "piece_id", nullable = false)
 	private Piece piece;
+	
+	
+	public void checkAttributes() {
+		if(this.piece==null) throw new AttributeMissingException("the piece is missing in the ressource sent");
+		if(this.piece_type==null) throw new AttributeMissingException("the piece_type is missing in the ressource sent");
+		if(this.Shipping==null) throw new AttributeMissingException("the shipping is missing in the ressource sent");
+
+	}
 }

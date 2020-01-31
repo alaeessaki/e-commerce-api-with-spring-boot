@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.youcode.entities.Image;
 import com.youcode.exceptions.NotFoundException;
+import com.youcode.models.Image;
 import com.youcode.services.interfaces.ImageServiceInterface;
 
 @RestController

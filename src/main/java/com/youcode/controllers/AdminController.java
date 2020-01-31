@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.youcode.entities.Admin;
 import com.youcode.exceptions.NotFoundException;
+import com.youcode.models.Admin;
 import com.youcode.services.interfaces.AdminServiceInterface;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.youcode.dao.RoleDaoInterface;
-import com.youcode.entities.Role;
+import com.youcode.models.Role;
 import com.youcode.services.interfaces.RoleServiceInterface;
 
 @Service

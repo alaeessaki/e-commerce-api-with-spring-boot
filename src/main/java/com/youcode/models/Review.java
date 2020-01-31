@@ -1,4 +1,4 @@
-package com.youcode.entities;
+package com.youcode.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,8 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -19,28 +19,30 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper=false)
-@Table(name = "images")
-public class Image extends AuditModel{
+@Table(name = "reviews")
+public class Review extends AuditModel{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "image_id")
+	@Column(name = "review_id")
 	private int id;
 	
-	@Column(name = "src", nullable = false)
-	private String src;
+	@Column(name = "stars", nullable = false)
+	private int stars;
 	
-	@Column(name = "alt", nullable = true)
-	private String alt;
+	@Column(name = "content", nullable = false)
+	@Lob
+	private String content;
+	
+	@Column(name = "image", nullable = true)
+	private String image;
+	
+	@ManyToOne
+	@JoinColumn(name = "client_id", nullable = false)
+	private Client client;
 	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "product_id", nullable = false)
 	private Product product;
-	
-	@PrePersist
-	void preInsert() {
-	   if (this.alt == null)
-	       this.alt = this.product.getName() + " image";
-	}
 }

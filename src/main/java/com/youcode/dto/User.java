@@ -1,4 +1,4 @@
-package com.youcode.entities;
+package com.youcode.dto;
 
 
 import javax.persistence.Column;
@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.youcode.config.AuditModel;
+import com.youcode.models.Role;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -23,7 +24,7 @@ import lombok.EqualsAndHashCode;
 public abstract class User extends AuditModel{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name = "user_id")
 	private int id;
 	

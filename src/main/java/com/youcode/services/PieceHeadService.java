@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.youcode.dao.PieceHeadDaoInterface;
-import com.youcode.entities.PieceHead;
+import com.youcode.models.PieceHead;
 import com.youcode.services.interfaces.PieceHeadServiceInterface;
 
 @Service

@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.youcode.entities.PieceType;
 import com.youcode.exceptions.NotFoundException;
+import com.youcode.models.PieceType;
 import com.youcode.services.interfaces.PieceTypeServiceInterface;
 
 @RestController

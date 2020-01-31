@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.youcode.dao.ShippingDaoInterface;
-import com.youcode.entities.Shipping;
+import com.youcode.models.Shipping;
 import com.youcode.services.interfaces.ShippingServiceInterface;
 
 @Service
@@ -21,6 +21,9 @@ public class ShippingService implements ShippingServiceInterface{
 	}
 	public Optional<Shipping> get(int id){
 		return shipping_dao.findById(id);
+	}
+	public Shipping findFirstByOrderByNameAsc() {
+		return shipping_dao.findFirstByOrderByNameAsc();
 	}
 	public List<Shipping> getAll(){
 		return shipping_dao.findAll();

@@ -15,37 +15,44 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.youcode.entities.Category;
 import com.youcode.exceptions.NotFoundException;
+import com.youcode.models.Category;
+import com.youcode.models.Product;
 import com.youcode.services.interfaces.CategoryServiceInterface;
 
 @RestController
 @CrossOrigin
-@RequestMapping("api/categories")
+@RequestMapping("api")
 public class CategoryController {
 
 	@Autowired
 	CategoryServiceInterface category_service;
 
-	@GetMapping("")
+	@GetMapping("/categories")
 	public ResponseEntity<List<Category>> getAll(){
 		return ResponseEntity.ok(category_service.getAllParents());
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/categories/{id}")
 	public ResponseEntity<Category> getCategory(@PathVariable("id")int id){
 		Category category = category_service.get(id).orElseThrow(()->new NotFoundException("there is no category with this id"));
 		return ResponseEntity.ok(category);
 	}
 	
-	@PostMapping("")
+	@GetMapping("/categories/{id}/products")
+	public ResponseEntity<List<Product>> getCategoryProducts(@PathVariable("id")int id){
+		Category category = category_service.get(id).orElseThrow(()->new NotFoundException("there is no category with this id"));
+		return ResponseEntity.ok(category.getProducts());
+	}
+	
+	@PostMapping("/admins/categories")
 	public ResponseEntity<Category> addCategory(@RequestBody Category category){
 		category.checkProperties();
 		category_service.add(category);
 		return ResponseEntity.ok(category);
 	}
 	
-	@PostMapping("/{id}")
+	@PostMapping("/admins/categories/{id}")
 	public ResponseEntity<Category> addSubCategory(@PathVariable("id")int id, @RequestBody Category sub_category){
 		Category parent_category = category_service.get(id).orElseThrow(()->new NotFoundException("there is no category with this id"));
 		sub_category.setParent(parent_category);
@@ -54,7 +61,7 @@ public class CategoryController {
 		return ResponseEntity.ok(sub_category);
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("/admins/categories/{id}")
 	public ResponseEntity<Category> replaceCategory(@PathVariable("id")int id, @RequestBody Category new_category){
 		category_service.get(id).orElseThrow(()->new NotFoundException("there is no category with this id"));
 		new_category.setId(id);
@@ -64,7 +71,7 @@ public class CategoryController {
 	}
 	
 	
-	@PatchMapping("/{id}")
+	@PatchMapping("/admins/categories/{id}")
 	public ResponseEntity<Category> updateCategory(@PathVariable("id")int id, @RequestBody Category new_category){
 		Category category = category_service.get(id).orElseThrow(()->new NotFoundException("there is no category with this id"));
 		category.setLabel(new_category.getLabel());
@@ -72,7 +79,7 @@ public class CategoryController {
 		return ResponseEntity.ok(category);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/admins/categories/{id}")
 	public ResponseEntity<String> deleteCategory(@PathVariable("id")int id){
 		category_service.get(id).orElseThrow(()->new NotFoundException("there is no category with this id"));
 		category_service.delete(id);
