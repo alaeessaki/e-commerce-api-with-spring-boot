@@ -47,7 +47,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		http.csrf().disable()
 		.authorizeRequests().antMatchers("/authenticate").permitAll().antMatchers("/v2/api-docs","/configuration/ui","/swagger-resources/**","/configuration/security","/swagger-ui.html","/webjars/**").permitAll().
-		and().authorizeRequests().antMatchers("/api/admins/**").hasAuthority("admin")
+		antMatchers("/api/categories/**").permitAll().and().authorizeRequests().antMatchers("/api/admins/**").hasAuthority("admin")
 		.anyRequest().authenticated()
 		.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 		.and().addFilterBefore(jwtrequestfilter, UsernamePasswordAuthenticationFilter.class);
