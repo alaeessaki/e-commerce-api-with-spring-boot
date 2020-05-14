@@ -45,9 +45,9 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.csrf().disable()
+		http.cors().and().csrf().disable()
 		.authorizeRequests().antMatchers("/authenticate").permitAll().antMatchers("/v2/api-docs","/configuration/ui","/swagger-resources/**","/configuration/security","/swagger-ui.html","/webjars/**").permitAll().
-		antMatchers("/api/categories/**").permitAll().and().authorizeRequests().antMatchers("/api/admins/**").hasAuthority("admin")
+		antMatchers("/api/categories/**").permitAll().antMatchers("/downloadFile/**").permitAll().and().authorizeRequests().antMatchers("/api/admins/**").hasAuthority("admin")
 		.anyRequest().authenticated()
 		.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 		.and().addFilterBefore(jwtrequestfilter, UsernamePasswordAuthenticationFilter.class);

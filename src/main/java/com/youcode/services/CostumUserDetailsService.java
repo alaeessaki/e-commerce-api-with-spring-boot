@@ -27,7 +27,6 @@ public class CostumUserDetailsService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 		User user = userService.findByUsername(username).orElseThrow(()->new NotFoundException("there is no user with this username"));
-;		System.out.println(new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getGrantedAuthorities(user)));
 		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getGrantedAuthorities(user));
 //		return new org.springframework.security.core.userdetails.User("alae","alae12",new ArrayList());
 	}
